@@ -6,12 +6,11 @@ from flask import Flask, render_template
 app = Flask(__name__)
 
 dataframe_gff3 = (Reader_gff3.read('Homo_sapiens.GRCh38.85.gff3')).get_data_frame()
-global_l = ['column_info','list_seqids','list_types','count_features_in_source','count_entries_4type','count_entirechroms','new_havana']
 
 
 @app.route('/')
 def homepage():
-	return render_template('homepage.html')
+    return render_template('homepage.html')
 
 
 @app.route('/active_operations')
@@ -27,7 +26,7 @@ def column_info():
             <head><title>1. Information about the dataset</title>
             <link rel="stylesheet" type="text/css" href="/static/styles/main.css" /></head>
             <body>
-            <h2>2. List of seqIDs</h2>
+            <h2>1. Information about the dataset</h2>
             <p><cellspacing="3">{df}</p>
             </p>If you want to access other operations, click <a href='active_operations'>here</a>, otherwise go back to <a href='/'>Homepage</a></p>
             </body></html>'''
@@ -100,8 +99,7 @@ def list_types():
             </p>If you want to access other operations, click <a href='active_operations'>here</a>, otherwise go back to <a href='/'>Homepage</a></p>
             </body></html>'''
     else:
-        df = (Operation.list_types(dataframe_gff3).get_data_frame()).to_html(justify='center',
-                                                                                           max_rows=20)
+        df = (Operation.list_types(dataframe_gff3).get_data_frame()).to_html(justify='center', max_rows=20)
         return f'''<html>
         <head><title>3. List of types </title>
         <link rel="stylesheet" type="text/css" href="/static/styles/main.css" /></head>
@@ -135,7 +133,7 @@ def count_features_in_source():
             <head><title>4. Count features in 'source'</title>
             <link rel="stylesheet" type="text/css" href="/static/styles/main.css" /></head>
             <body>
-            <h2>4. Count of features in 'source'</h2>
+            <h2>4. Count features in 'source'</h2>
             <p><cellspacing="3">{df}</p>
             </p>If you want to access other operations, click <a href='active_operations'>here</a>, otherwise go back to <a href='/'>Homepage</a></p>
             </body></html>'''
@@ -145,7 +143,7 @@ def count_features_in_source():
         <head><title>4. Count features in 'source'</title>
         <link rel="stylesheet" type="text/css" href="/static/styles/main.css" /></head>
         <body>
-        <h2>4. Count of features in 'source'</h2>
+        <h2>4. Count features in 'source'</h2>
         <p><cellspacing="3">{df}</p>
         <p> If you want to access other operations, click <a href='active_operations'>here</a>, otherwise go back to <a href='/'>Homepage</a></p>
         <div style="position:relative">
