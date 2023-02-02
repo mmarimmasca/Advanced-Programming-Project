@@ -3,8 +3,6 @@
 import pandas as pd
 from dataset import Dataset, Dataset_gff3
 
-# DECORATOR
-# import inspect
 
 global_l = ['column_info', 'list_seqids', 'list_types', 'count_features_in_source', 'count_entries_4type',
             'info_entirechroms', 'fraction_unassembled', 'new_havana', 'count_entries_new_havana', 'gene_name']
@@ -23,6 +21,7 @@ def isactive(f):
             return ('Function not in the registry of active operations')
 
     return wrapper
+
 
 
 class Operation:
@@ -100,5 +99,3 @@ class Operation:
         genes = df[df['type'] == 'gene']['attributes']
         names = pd.DataFrame({'genes': genes.apply(split_rows)})
         return Dataset(names.reset_index(drop=True))
-        
-        
