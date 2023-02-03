@@ -14,8 +14,7 @@ def split_rows(row):
     
 def isactive(f):
     def wrapper(*args):
-        if f.__name__ in global_l:
-            print('The function is marked as active, follow the results:')
+        if f.__name__ in global_l: 
             return f(*args)
         else:
             return ('Function not in the registry of active operations')
