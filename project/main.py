@@ -1,26 +1,33 @@
 ##file con i metodi per le operazioni per progetto Advanced Programming
 
 from reader import Reader_gff3
+import operations
 from operations import *
 from flask import Flask, render_template
 app = Flask(__name__)
 
 dataframe_gff3 = (Reader_gff3.read('Homo_sapiens.GRCh38.85.gff3')).get_data_frame()
 
-def active(f):
-    if f in global_l:
-        return 'active'
+d = {}
+cls = getattr(operations, 'Operation') #assign the class 'Operation' to a variable
+method_list = [method for method in dir(Operation) if method.startswith('__') is False] #get list of the names of the methods in 'Operation'
+
+for e in method_list:
+    func = getattr(cls, e) #assign the method of the class 'Operation' with name equal to the variable e
+    if type(func(dataframe_gff3)) == str:
+        d[e] = 'inactive'
     else:
-        return 'inactive'
+        d[e] = 'active'
+
 
 @app.route('/')
 def homepage():
-	return render_template('homepage.html')
+    return render_template('homepage.html')
 
 
 @app.route('/active_operations')
 def active_operations():
-    return render_template('list_operations.html', active = active)
+    return render_template('list_operations.html', active = d)
 
 
 @app.route('/column_info')
@@ -122,9 +129,9 @@ def new_havana_tot():
 @app.route('/count_entries_new_havana')
 def count_entries_new_havana():
     if type(Operation.count_entries_new_havana(dataframe_gff3)) == str:
-        df = Operation.column_info(dataframe_gff3)
+        df = Operation.count_entries_new_havana(dataframe_gff3)
     else:
-        df = (Operation.column_info(dataframe_gff3).get_data_frame()).to_html(justify='center', max_rows=20)
+        df = (Operation.count_entries_new_havana(dataframe_gff3).get_data_frame()).to_html(justify='center', max_rows=20)
     return render_template('style_operations.html', title = '9. Count entries from new_havana', df = df)
 
 
