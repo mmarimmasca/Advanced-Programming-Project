@@ -3,7 +3,8 @@ Collaborators: Mascagni Marianna, Ruggiero Alessia, Vincenzi Francesca
 ## Main aim
 <!-- what is the aim of the software, what it does, in very general terms -->
 ## The gff3 file
-The data on which the software works is stored in a GFF3 file, which stands for Generic Feature Format Version 3, called 'Homo_sapiens.GRCh38.85.gff3.gz'. This file contains the annotation of the sequences and for this reason it's only 37 MB large; actually this is the compressed form of the file (.gz).
+The data on which the software works is stored in a GFF3 file, which stands for Generic Feature Format Version 3, called 'Homo_sapiens.GRCh38.85.gff3'. This file contains the annotation of the sequences.
+The file can be downloaded here : [link to...]()
 
 GFF3 files are nine-column, tab-delimited, plain text files; they're actually conceived as tabular data. In the head of the file is usually present many metadata lines which start with:
 - \## (meaning it's stable metadata)
