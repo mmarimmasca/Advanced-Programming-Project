@@ -48,6 +48,11 @@ The software allows to get a number of insights over the annotation data. These 
 9. Count entries from new_havana : count the number of entries for each type of operation for the dataset containing containing only entries from source 'ensembl', 'havana'and 'ensembl_havana'
 10. Genes names : return the gene names from the dataset containing containing only entries from source 'ensembl', 'havana' and 'ensembl_havana'
 
-<!-- what are these, how they work (what are the input and the output), describe briefly what each of them do -->
+These insights, also referred to as 'operations', are contained in a registry of active operations.
+
 ## User interface
-<!-- web pages, how it is built, Flask -->
+The software can be accessed by users through a web page, supported on Flask.
+The homepage  presents briefly the software and from there the registry of active operations and the project document can be accessed.
+The registry of active operations opens in another page view where all the possible operations are listed and by selecting one of them another page view is opened where it's showed the result.
+  For some of the operations ("List seqIDs", "Information about entire chromosomes", "Display entries from 'havana', 'ensembl', 'ensembl_havana'", "Genes names") the resulting dataset displayed is a resume of the real one containing only the *first 20?* rows; the real one can be accessed from the same page view.
+The project document page view displays the description of the project in terms of software analysis, design and implementation, including CRC cards and UML class diagrams and their description.
