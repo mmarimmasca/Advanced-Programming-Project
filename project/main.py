@@ -122,7 +122,7 @@ def new_havana():
 
     else:
         df = (df.get_data_frame()).to_html(justify='center', max_rows=20)
-        return render_template('style_non_tot.html', title = "8. Display entries from 'havana', 'ensembl', 'ensembl_havana'", df = df, redirect = '/new_havana_tot_tot')
+        return render_template('style_non_tot.html', title = "8. Display entries from 'havana', 'ensembl', 'ensembl_havana'", df = df, redirect = '/new_havana_tot')
 
 
 @app.route('/new_havana_tot')
