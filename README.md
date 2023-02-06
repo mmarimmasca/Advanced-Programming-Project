@@ -4,7 +4,7 @@ Collaborators: Mascagni Marianna, Ruggiero Alessia, Vincenzi Francesca
 <!-- what is the aim of the software, what it does, in very general terms -->
 ## The gff3 file
 The data on which the software works is stored in a GFF3 file, which stands for Generic Feature Format Version 3, called 'Homo_sapiens.GRCh38.85.gff3'. This file contains the annotation of the sequences.
-The file can be downloaded here : [link to...]()
+The file can be downloaded here : [link to...](https://drive.google.com/file/d/1AAke_vEC7LK0uasCoXE3Ge-KHeSYOWwK/view?usp=share_link)
 
 GFF3 files are nine-column, tab-delimited, plain text files; they're actually conceived as tabular data. In the head of the file is usually present many metadata lines which start with:
 - \## (meaning it's stable metadata)
@@ -53,5 +53,5 @@ These insights, also referred to as 'operations', are contained in a registry of
 The software can be accessed by users through a web page, supported on Flask.
 The homepage presents briefly the software and from there the registry of active operations and the project document can be accessed.
 The registry of active operations opens in another page view where all the possible operations are listed and by selecting one of them another page view is opened where the result is displayed.
-  For some of the operations ("List seqIDs", "Information about entire chromosomes", "Display entries from 'havana', 'ensembl', 'ensembl_havana'", "Genes names") the resulting dataset displayed is a preview of the complete one containing only the *first 10 and last 10* rows; the real one can be accessed from the same page view.
+  For some of the operations ("List seqIDs", "Information about entire chromosomes", "Display entries from 'havana', 'ensembl', 'ensembl_havana'", "Genes names") the resulting dataset displayed is a preview of the complete one containing only the first 10 and last 10 rows; the real one can be accessed from the same page view.
 The project document page view displays the description of the project in terms of software analysis, design and implementation, including CRC cards and UML class diagrams and their description.
