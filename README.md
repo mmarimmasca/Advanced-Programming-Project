@@ -4,7 +4,7 @@ Collaborators: Mascagni Marianna, Ruggiero Alessia, Vincenzi Francesca
 <!-- what is the aim of the software, what it does, in very general terms -->
 ## The gff3 file
 The data on which the software works is stored in a GFF3 file, which stands for Generic Feature Format Version 3, called 'Homo_sapiens.GRCh38.85.gff3'. This file contains the annotation of the sequences.
-The file can be downloaded here : [link to...](https://drive.google.com/file/d/1AAke_vEC7LK0uasCoXE3Ge-KHeSYOWwK/view?usp=share_link)
+The file can be downloaded here : [link to file in Google Drive](https://drive.google.com/file/d/1AAke_vEC7LK0uasCoXE3Ge-KHeSYOWwK/view?usp=share_link)
 
 GFF3 files are nine-column, tab-delimited, plain text files; they're actually conceived as tabular data. In the head of the file is usually present many metadata lines which start with:
 - \## (meaning it's stable metadata)
@@ -44,7 +44,7 @@ The software allows to get a number of insights over the annotation data. These 
 6. Information about entire chromosomes : derive a new dataset containing only the information about entire chromosomes
 7. Calculate the fraction of unassembled sequences : calculate the fraction of unassembled sequences from source GRCh38
 8. Display entries from 'havana', 'ensembl', 'ensembl_havana' : obtain a new dataset containing only entries from source 'ensembl', 'havana' and 'ensembl_havana'
-9. Count entries from new_havana : count the number of entries for each type of operation for the dataset containing containing only entries from source 'ensembl', 'havana' and 'ensembl_havana'
+9. Count entries from 'havana', 'ensembl', 'ensembl_havana' : count the number of entries for each type of operation for the dataset containing containing only entries from source 'ensembl', 'havana' and 'ensembl_havana'
 10. Genes names : return the gene names from the dataset containing containing only entries from source 'ensembl', 'havana' and 'ensembl_havana'
 
 These insights, also referred to as 'operations', are contained in a registry of active operations.
