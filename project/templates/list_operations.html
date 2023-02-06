@@ -7,44 +7,44 @@
 			<h1>List of operations</h1>
             <p style='border-left:6px solid red; line-height:2'>&nbsp The output of each operation can be displayed by clicking on the relative button!</p>
             <ol>
-            <li><p>get the basic information about the dataset:  <i>{{active('column_info')}}</i>
+            <li><p>get the basic information about the dataset:  <i>{{active['column_info']}}</i>
 			<form action='./column_info'>
                 <input type="submit" value="column_info" />
             </form></p></li>
-            <li><p>obtain the list of unique sequence IDs available in the dataset:  <i>{{active('list_seqids')}}</i>
+            <li><p>obtain the list of unique sequence IDs available in the dataset:  <i>{{active['list_seqids']}}</i>
 			<form action='./list_seqids'>
                 <input type="submit" value="list_seqids"/>
             </form></p></li>
-            <li><p>obtain the list of unique type of operations available in the dataset:   <i>{{active('list_types')}}</i>
+            <li><p>obtain the list of unique type of operations available in the dataset:   <i>{{active['list_types']}}</i>
 			<form action='./list_types'>
                 <input type="submit" value="list_types" />
             </form></p></li>
-            <li><p>count the number of features provided by the same source: 	<i>{{active('count_features_in_source')}}</i>
+            <li><p>count the number of features provided by the same source: 	<i>{{active['count_features_in_source']}}</i>
 			<form action='./count_features_in_source'>
                 <input type="submit" value="count_features_in_source" />
             </form></p></li>
-            <li><p>count the number of entries for each type of operation: 		<i>{{active('count_entries_4type')}}</i>
+            <li><p>count the number of entries for each type of operation: 		<i>{{active['count_entries_4type']}}</i>
 			<form action='./count_entries_4type'>
                 <input type="submit" value="count_entries_4type" />
             </form></p></li>
-            <li><p>derive a new dataset containing only the information about entire chromosomes: 		<i>{{active('info_entirechroms')}}</i>
+            <li><p>derive a new dataset containing only the information about entire chromosomes: 		<i>{{active['info_entirechroms']}}</i>
 			<form action='./info_entirechroms'>
                 <input type="submit" value="info_entirechroms" />
             </form></p></li>
-            <li><p>calculate the fraction of unassembled sequences from source GRCh38: 		<i>{{active('fraction_unassembled')}}</i>
+            <li><p>calculate the fraction of unassembled sequences from source GRCh38: 		<i>{{active['fraction_unassembled']}}</i>
 			<form action='./fraction_unassembled'>
                 <input type="submit" value="fraction_unassembled" />
             </form></p></li>
-            <li><p>obtain a new dataset containing only entries from source 'ensembl', 'havana' and 'ensembl_havana': 		<i>{{active('new_havana')}}</i>
+            <li><p>obtain a new dataset containing only entries from source 'ensembl', 'havana' and 'ensembl_havana': 		<i>{{active['new_havana']}}</i>
             <form action='./new_havana'>
                 <input type="submit" value="new_havana" />
             </form></p></li>
             <li><p>count the number of entries for each type of operation for the dataset containing containing only entries from source
-            'ensembl', 'havana'and 'ensembl_havana': 		<i>{{active('count_entries_new_havana')}}</i>
+            'ensembl', 'havana'and 'ensembl_havana': 		<i>{{active['count_entries_new_havana']}}</i>
 			<form action='./count_entries_new_havana'>
                 <input type="submit" value="count_entries_new_havana" />
             </form></p></li>
-            <li><p>return the gene names from the dataset containing containing only entries from source 'ensembl', 'havana' and 'ensembl_havana': 		<i>{{active('gene_name')}}</i>
+            <li><p>return the gene names from the dataset containing containing only entries from source 'ensembl', 'havana' and 'ensembl_havana': 		<i>{{active['gene_name']}}</i>
             <form action='./gene_name'>
                 <input type="submit" value="gene_name" />
             </form></p></li>
