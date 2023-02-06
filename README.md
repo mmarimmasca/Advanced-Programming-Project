@@ -25,14 +25,14 @@ For the realization of this purpose, the class **Reader_gff3** behaves as a data
 The Reader_gff3 class is a subclass of the abstract class *Reader*, which is a general abstract interface.
 > argomenta di più ?
 
-As stated before, the Reader_gff3 class returns a Dataset_gff3 instance, that has as input the Pandas DataFrame corresponding to the original GFF3 file. The class **Dataset_gff3** is a subclass of the **Dataset** class: the first one is peculiar for the GFF3 case; whereas the second one is a class defining a generic tabular data . Then, the Dataset_gff3 class takes a Pandas DataFrame (that's actually deriving from the GFF3 file) as input and modifies it to make it properly structured for the obtaining of the insights over data.
+The Reader_gff3 class takes as input the Pandas DataFrame corresponding to the original GFF3 file and returns an instance of the Dataset_gff3 class. The class **Dataset_gff3** is a subclass of the **Dataset** class: the first one is peculiar for the GFF3 case; whereas the second one is a class defining a generic tabular data. The Dataset_gff3 class also takes as input a Pandas DataFrame (that derives from the GFF3 file) and modifies it to make it properly structured for the obtaining of the insights over data.
 > detta male casomai riguardaci
 
-In particular, the modifications are:
-- removing of all the metadata
-- replace the missing values (labeled with '.') with NaN values
+The modifications we have applied to the DataFrame are:
+- removal of all the metadata
+- replacement of the missing values (labeled with '.') with NaN values
 
-Once the modifications are done, the Pandas DataFrame resulting from Dataset_gff3 becomes an instance of its superclass Dataset.
+The Pandas DataFrame resulting from Dataset_gff3 becomes an instance of its superclass Dataset.
 Then the Dataset object corresponding to the cleaned GFF3 file can be used to get the insights from the annotation file.
 
 
@@ -46,14 +46,14 @@ The software allows to get a number of insights over the annotation data. These 
 6. Information about entire chromosomes : derive a new dataset containing only the information about entire chromosomes
 7. Calculate the fraction of unassembled sequences : calculate the fraction of unassembled sequences from source GRCh38
 8. Display entries from 'havana', 'ensembl', 'ensembl_havana' : obtain a new dataset containing only entries from source 'ensembl', 'havana' and 'ensembl_havana'
-9. Count entries from new_havana : count the number of entries for each type of operation for the dataset containing containing only entries from source 'ensembl', 'havana'and 'ensembl_havana'
+9. Count entries from new_havana : count the number of entries for each type of operation for the dataset containing containing only entries from source 'ensembl', 'havana' and 'ensembl_havana'
 10. Genes names : return the gene names from the dataset containing containing only entries from source 'ensembl', 'havana' and 'ensembl_havana'
 
 These insights, also referred to as 'operations', are contained in a registry of active operations.
 
 ## User interface
 The software can be accessed by users through a web page, supported on Flask.
-The homepage  presents briefly the software and from there the registry of active operations and the project document can be accessed.
-The registry of active operations opens in another page view where all the possible operations are listed and by selecting one of them another page view is opened where it's showed the result.
-  For some of the operations ("List seqIDs", "Information about entire chromosomes", "Display entries from 'havana', 'ensembl', 'ensembl_havana'", "Genes names") the resulting dataset displayed is a resume of the real one containing only the *first 20?* rows; the real one can be accessed from the same page view.
+The homepage presents briefly the software and from there the registry of active operations and the project document can be accessed.
+The registry of active operations opens in another page view where all the possible operations are listed and by selecting one of them another page view is opened where the result is displayed.
+  For some of the operations ("List seqIDs", "Information about entire chromosomes", "Display entries from 'havana', 'ensembl', 'ensembl_havana'", "Genes names") the resulting dataset displayed is a preview of the complete one containing only the *first 10 and last 10* rows; the real one can be accessed from the same page view.
 The project document page view displays the description of the project in terms of software analysis, design and implementation, including CRC cards and UML class diagrams and their description.
