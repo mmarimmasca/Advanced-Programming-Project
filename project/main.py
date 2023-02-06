@@ -138,7 +138,7 @@ def count_entries_new_havana():
         pass
     else:
         df = (df.get_data_frame()).to_html(justify='center')
-    return render_template('style_operations.html', title = '9. Count entries from new_havana', df = df)
+    return render_template('style_operations.html', title = "9. Count entries from 'havana', 'ensembl', 'ensembl_havana'", df = df)
 
 
 @app.route('/gene_name')
