@@ -156,5 +156,10 @@ def gene_name_tot():
     df = Operation.geneName(dataset).getDataFrame().to_html(justify='center')
     return render_template('style_operations.html', title = '10. Genes names', df = df)
 
+@app.route('/projectspecification')
+def projectspecification():
+    return render_template('projectspecification.html', title= 'Project Specification')
+           
+
 
 app.run()
