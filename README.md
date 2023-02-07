@@ -54,4 +54,4 @@ The software can be accessed by users through a web page, supported on Flask.
 The homepage presents briefly the software and from there the registry of active operations and the project document can be accessed.
 The registry of active operations opens in another page view where all the possible operations are listed and by selecting one of them another page view is opened where the result is displayed.
   For some of the operations ("List seqIDs", "Information about entire chromosomes", "Display entries from 'havana', 'ensembl', 'ensembl_havana'", "Genes names") the resulting dataset displayed is a preview of the complete one containing only the first 10 and last 10 rows; the real one can be accessed from the same page view.
-The project document page view displays the description of the project in terms of software analysis, design and implementation, including CRC cards and UML class diagrams and their description.
+The project specification page view displays the description of the project in terms of software analysis, design and implementation, including CRC cards and UML class diagrams and their description.
