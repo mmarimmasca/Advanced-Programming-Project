@@ -29,13 +29,7 @@ class Operation:
     @staticmethod
     @isactive
     def columnInfo(df : DataSet):
-        df = df.getDataFrame()
-        columns = pd.Series(dtype=object)
-        types = pd.Series(dtype=object)
-        for column in df:
-            columns = columns.append(pd.Series(column))
-            types = types.append(pd.Series(df[column].dtype))
-        return DataSet(pd.DataFrame(data={'names of columns': columns, 'types': types}).reset_index(drop=True))
+        return DataSet(pd.DataFrame(data={'names of columns': df.columns, 'types': [df[column].dtype for column in df.columns ]}).reset_index(drop=True))
 
     # 2
     @staticmethod
