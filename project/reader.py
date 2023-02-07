@@ -1,8 +1,8 @@
-##Reader class for project Advanced programming
+##reader class for project Advanced programming
 
 import pandas as pd
 from abc import ABC, abstractmethod
-from dataset import Dataset, Dataset_gff3
+from dataset import DataSet, DataSetGff3
 
 
 class Reader(ABC):
@@ -12,8 +12,11 @@ class Reader(ABC):
         pass
 
 
-class Reader_gff3(Reader):
+class ReaderGff3(Reader):
     @staticmethod
     def read(file):
-        df = pd.read_table(file, delimiter="\t", names=["seqid", "source", "type", "start", "end", "score", "strand", "phase", "attributes"])
-        return Dataset_gff3(df)
+        df = pd.read_table(file, delimiter="\t",
+                           names=["seqid", "source", "type", "start", "end", "score", "strand", "phase", "attributes"])
+        # invece di pulire il df in Dataset, possiamo pulirlo direttamente quando lo leggiamo con : skiprows, quotechar
+
+        return DataSetGff3(df)

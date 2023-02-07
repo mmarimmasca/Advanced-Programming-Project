@@ -1,11 +1,13 @@
 ##decorator and operations project Advanced programming
 
 import pandas as pd
-from dataset import Dataset, Dataset_gff3
+from dataset import DataSet, DataSetGff3
 
+# DECORATOR
+# import inspect
 
-global_l = ['column_info', 'list_seqids', 'list_types', 'count_features_in_source', 'count_entries_4type',
-            'info_entirechroms', 'fraction_unassembled', 'new_havana', 'count_entries_new_havana', 'gene_name']
+global_l = ['columnInfo', 'listSeqIds', 'listTypes', 'countFeaturesInSource', 'countEntriesForType',
+            'infoEntireChroms', 'fractionUnassembled', 'newHavana', 'countEntriesNewHavana', 'geneName']
 
 
 def split_rows(row):
@@ -14,7 +16,7 @@ def split_rows(row):
     
 def isactive(f):
     def wrapper(*args):
-        if f.__name__ in global_l: 
+        if f.__name__ in global_l:
             return f(*args)
         else:
             return ('Function not in the registry of active operations')
@@ -22,79 +24,87 @@ def isactive(f):
     return wrapper
 
 
-
 class Operation:
     # 1
     @staticmethod
     @isactive
-    def column_info(df):
+    def columnInfo(df : DataSet):
+        df = df.getDataFrame()
         columns = pd.Series(dtype=object)
         types = pd.Series(dtype=object)
         for column in df:
             columns = columns.append(pd.Series(column))
             types = types.append(pd.Series(df[column].dtype))
-        return Dataset(pd.DataFrame(data={'names of columns': columns, 'types': types}).reset_index(drop=True))
+        return DataSet(pd.DataFrame(data={'names of columns': columns, 'types': types}).reset_index(drop=True))
 
     # 2
     @staticmethod
     @isactive
-    def list_seqids(df):
-        return Dataset(pd.DataFrame({'seqIDs': df['seqid'].unique()}))
+    def listSeqIds(df : DataSet):
+        df = df.getDataFrame()
+        return DataSet(pd.DataFrame({'seqIDs': df['seqid'].unique()}))
 
     # 3
     @staticmethod
     @isactive
-    def list_types(df):
-        return Dataset(pd.DataFrame({'types': df['type'].unique()}))
+    def listTypes(df : DataSet):
+        df = df.getDataFrame()
+        return DataSet(pd.DataFrame({'types': df['type'].unique()}))
 
     # 4
     @staticmethod
     @isactive
-    def count_features_in_source(df):
+    def countFeaturesInSource(df : DataSet):
+        df = df.getDataFrame()
         group_source = df.groupby('source')
-        return Dataset(pd.DataFrame({'source': group_source.groups.keys(), 'source count': group_source.size().array}))
+        return DataSet(pd.DataFrame({'source': group_source.groups.keys(), 'source count': group_source.size().array}))
 
     # 5
     @staticmethod
     @isactive
-    def count_entries_4type(df):
+    def countEntriesForType(df : DataSet):
+        df = df.getDataFrame() 
         group_type = df.groupby('type')
-        return Dataset(pd.DataFrame({'types': group_type.groups.keys(), 'types count': group_type.size().array}))
+        return DataSet(pd.DataFrame({'types': group_type.groups.keys(), 'types count': group_type.size().array}))
 
     # 6
     @staticmethod
     @isactive
-    def info_entirechroms(df):
-        return Dataset(df.loc[lambda df: df['source'] == 'GRCh38'].reset_index(drop=True))
+    def infoEntireChroms(df : DataSet):
+        df = df.getDataFrame() 
+        return DataSet(df.loc[lambda df: df['source'] == 'GRCh38'].reset_index(drop=True))
 
     # 7
     @staticmethod
     @isactive
-    def fraction_unassembled(df):
-        count_df = Operation.info_entirechroms(df).get_data_frame()
+    def fractionUnassembled(df : DataSet):
+        count_df = Operation.infoEntireChroms(df).getDataFrame()
         fract_df = count_df.loc[lambda df: df['type'] == 'supercontig']
-        return Dataset(pd.DataFrame({'unassembled/entire chromosomes': [f"{fract_df.shape[0]}/{count_df.shape[0]}"]}))
+        return DataSet(pd.DataFrame({'unassembled/entire chromosomes': [f"{fract_df.shape[0]}/{count_df.shape[0]}"]}))
 
     # 8
     @staticmethod
     @isactive
-    def new_havana(df):
+    def newHavana(df : DataSet):
+        df = df.getDataFrame()
         new_df = pd.DataFrame(df[df['source'].isin(['ensembl', 'havana', 'ensembl_havana'])])
-        return Dataset(new_df.reset_index(drop=True))
+        return DataSet(new_df.reset_index(drop=True))
 
     # 9
     @staticmethod
     @isactive
-    def count_entries_new_havana(df):
-        df_havana = Operation.new_havana(df).get_data_frame()
+    def countEntriesNewHavana(df : DataSet):
+        df_havana = Operation.newHavana(df).getDataFrame()
         group_type = df_havana.groupby('type')
-        return Dataset(pd.DataFrame({'type': group_type.groups.keys(), 'count': group_type.size().array}))
+        return DataSet(pd.DataFrame({'type': group_type.groups.keys(), 'count': group_type.size().array}))
 
     # 10
     @staticmethod
     @isactive
-    def gene_name(df):
-        df_havana = Operation.new_havana(df).get_data_frame()
-        genes = df[df['type'] == 'gene']['attributes']
+    def geneName(df : DataSet):
+        df_havana = Operation.newHavana(df).getDataFrame()
+        genes = df_havana[df_havana['type'] == 'gene']['attributes']
         names = pd.DataFrame({'genes': genes.apply(split_rows)})
-        return Dataset(names.reset_index(drop=True))
+        return DataSet(names.reset_index(drop=True))
+        
+        
