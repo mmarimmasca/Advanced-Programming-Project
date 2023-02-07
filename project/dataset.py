@@ -1,26 +1,27 @@
-##Dataset class project Advanced programming
-import pandas as pd
+# Advanced Programming Project
+# DataSet and DataSetGff3 classes
 
+import pandas as pd
 
 class DataSet:
     def __init__(self, df: pd.core.frame.DataFrame):
-        ''' df:pd.core.frame.DataFrame così l'oggetto Dataset è in realtà un DataFrame di Pandas e possiamo farci le Operations sopra '''
+        ''' The DataSet object is initialized .....  '''
         self.dataFrame = df
 
     def getDataFrame(self):
-        ''' Questo metodo lo usiamo per ritornare l'attributo data_frame dato che è sempre meglio utilizzare un metodo invece di un attributo '''
+        ''' This method returns the self.dataFrame attribute '''
         return self.dataFrame
 
 
 class DataSetGff3(DataSet):
     def __init__(self, df: pd.core.frame.DataFrame):
-        DataSet.__init__(self, df)
+        DataSet.__init__(self, df) # call the constructor of the superclass DataSet
 
-        ''' This part of code is supposed to 'clean' the Dataset, dropping the rows that start with ##,#! or ### '''
-        df = df.drop(df[df['seqid'].str.contains('#')].index)  # rimosso tutte le righe che contengono #
-
-        self.dataFrame = df.reset_index(drop=True)  # resettato indici dallo zero
-        self.dataFrame = self.dataFrame.replace('.', 'NaN')  # sostituito empty values with NaN
+        ''' This section of code cleans the Dataset, making it more proper to make operations on it '''
+        df = df.drop(df[df['seqid'].str.contains('#')].index)  # dropping rows that contain in the 'seqid' column the character '#', common to all metadata
+        self.dataFrame = df.reset_index(drop=True)             # reset indexes from 0
+        self.dataFrame = self.dataFrame.replace('.', 'NaN')    # replace empty values ('.') with NaN values
 
     def getDataFrame(self):
+        ''' This method returns the self.dataFrame attribute '''
         return self.dataFrame
