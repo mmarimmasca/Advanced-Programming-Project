@@ -1,12 +1,17 @@
+<!-- ADVANCED PROGRAMMING PROJECT
+     HTML DOCUMENT for the user interface - web page
+     In this file it's contained the HTML code for the Project Specification -->
+
 <!DOCTYPE HTML>
 
 <html>
     <head>
 	<title> Project Specification </title>
-	<style> h2{font-wight:bold;font-family:Georgia} p{font-family:Georgia} </style>
+	<style> h1{font-size:30px;color:#2E8B57;font-wight:bold;font-family:Georgia} h2{font-wight:bold;font-family:Georgia} p{font-family:Georgia} </style>
     </head>
     
-    <body style= 'font-family: Georgia, serif; margin: 25px 50px 75px 50px'>
+    <body style= 'margin: 25px 50px 75px 50px'>
+	<h1> Project specification </h1>
     <h2> Class Responsibility Collaboration Cards </h2>
     <p>The class Reader is an abstract class, therefore it inherits from abc.ABCMeta, which is the metaclass for abc.ABC class, its only responsibility is to read data from any type of file.<br>
 	The class ReaderGff3 is a subclass of the class Reader and it reads data only from a GFF3 type of file, though the pandas read_table method and returns a DataSetGff3 file, therefore it relies not only on pandas but also on the DataSetGff3 class.<br>
@@ -28,38 +33,37 @@
     
     <h2> Software implementation </h2>
     <p> In order to work and deal with the annotation data, the GFF3 file is transformed into a Pandas DataFrame through the class ReaderGff3,
-	    which is the dataset reader that takes the dataset in GFF3 format and creates a correspondent Pandas DataFrame as an instance of the class DataSetGff3.
+	which is the dataset reader that takes the dataset in GFF3 format and creates a correspondent Pandas DataFrame as an instance of the class DataSetGff3.
 	The ReaderGff3 is a subclass of the abstract class Reader, which is a general abstract interface.
-	Both the ReaderGff3 and the Reader classes are decorated with '@staticmethod' so that an instance of these classes don't have to be created in order to use the classes and their methods.
-	    
-	The class DataSetGff3, which is a subclass of the DataSet class and is peculiar for the GFF3 case, takes as input a Pandas DataFrame (that derives from the GFF3 file) and modifies it to make it properly structured for the obtaining of the insights over data.
-	Through the method ".getDataFrame()", the Pandas DataFrame resulting from DataSetGff3 becomes an instance of the class DataSet.
-	Then the DataSet object, corresponding to the cleaned GFF3 file, is used as template for performing the operations.
-	
+	Both the ReaderGff3 and the Reader classes are decorated with '@staticmethod' so that an instance of these classes don't have to be created in order to use the classes and their methods.<br>	    
+	<br>
+	The class DataSetGff3, which is a subclass of the DataSet class and is peculiar for the GFF3 case, takes as input a Pandas DataFrame (that derives from the GFF3 file) and modifies it to make it properly structured for the obtaining of the insights over data.<br>
+	Through the method ".getDataFrame()", the Pandas DataFrame resulting from DataSetGff3 becomes an instance of the class DataSet.<br>
+	Then the DataSet object, corresponding to the cleaned GFF3 file, is used as template for performing the operations.<br>
+	<br>
 	Each operation is implemented as a method of the class Operation. These methods take as input a DataSet object and return another DataSet object that contains the output of the respective operation.
-	Each of the methods is decorated with '@staticmethod'. 
-	
-	In order to perform the operation on a DataSet object, it has to be part of the registry of active operations (which is implemented as a list called 'global_l').
-	A decorator called '@isactive' marks an operation as active or not by checking if it's part of the registry of active operations: if it's part of it, the output is the execution of the method; otherwise it's a string displaying an error message.
-	    
-	The user interface consists in a web site where the homepage provides access to the registry of operations and the project specification.
-	The registry of operations is opened in another page view where the user can select the operation to run and the output is displayed in another page view. 
-	Each operation is labeled either with 'active' or 'inactive' depending on the '@isactive' decorator.
-	    To do so, the class Operation is assigned to a variable and a list containing the names of the methods in the class Operation is created.
-	    Then, a dictionary is created where the keys are the elements of the methods list and the values either 'active' or 'inactive' strings, depending on the output of the decorator applied on the method.
-	To each operation can correspond either one of two outputs: a page view displaying the table with the results if the operation is active, or a page view displaying the error message "Function not in the registry of active operations" if the operation is inactive.
-	Some tables, which would be very long, only display the first and last 10 rows of the dataset; the complete table can be accessed in another page view from a link below the table.
-	The project specification is opened in another page view as well.
-	    
-	
-	The web page is implemented with Flask.
-	In Flask each route is implemented by a function that returns an HTML.
+	Each of the methods is decorated with '@staticmethod'. <br>
+	<br>
+	In order to perform the operation on a DataSet object, it has to be part of the registry of active operations (which is implemented as a list called 'global_l').<br>
+	A decorator called '@isactive' marks an operation as active or not by checking if it's part of the registry of active operations: if it's part of it, the output is the execution of the method; otherwise it's a string displaying an error message.<br>
+	In the current version of the software, all the operations listed in the previous paragraph are part of the registry of active operations, therefore they're active.<br>
+	<br>
+	<br>
+	The user interface consists in a web site where the homepage provides access to the registry of operations and the project specification.<br>
+	The registry of operations is opened in another page view where the user can select the operation to run and the output is displayed in another page view.<br>
+	Each operation is labeled either with 'active' or 'inactive' depending on the '@isactive' decorator.<br>
+	&emsp;&emsp;To do so, the class Operation is assigned to a variable and a list containing the names of the methods in the class Operation is created.<br>
+	&emsp;&emsp;Then, a dictionary is created where the keys are the elements of the methods list and the values either 'active' or 'inactive' strings, depending on the output of the decorator applied on the method.<br>
+	To each operation can correspond either one of two outputs: a page view displaying the table with the results if the operation is active, or a page view displaying the error message "Function not in the registry of active operations" if the operation is inactive. 
+	Some tables, which would be very long, only display the first and last 10 rows of the dataset; the complete table can be accessed in another page view from a link below the table.<br>
+	The project specification is opened in another page view as well.<br>
+	<br>
+	The web page is implemented with Flask. In Flask each route is implemented by a function that returns an HTML.<br>
 	To each operation corresponds a different route and in the case of operations requiring both the preview table and the complete one, two different routes are implemented.
 	
     </p>
 
-    <p style="position:relative;bottom:2px;width:100%;font-size:14px;font-color:#696969:;text-align:center; background-color:white; "> Advanced Programming project, Genomics 2022/2023 - Ruggiero Alessia, Vincenzi Francesca, Mascagni Marianna  </p>
+    <p style="position:relative;bottom:-175px;width:100%;font-size:14px;font-color:#696969:;text-align:center; background-color:white; "> Advanced Programming project, Genomics 2022/2023 - Ruggiero Alessia, Vincenzi Francesca, Mascagni Marianna  </p>
     
     </body>
 </html>
-	
