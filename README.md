@@ -1,4 +1,4 @@
-# Insights over the human genome
+# Insights on the Human Genome
 Collaborators: Mascagni Marianna, Ruggiero Alessia, Vincenzi Francesca <br>
 Advanced Programming porject, Genomics 2022/2023
 ## Main aim
