@@ -3,7 +3,7 @@ Collaborators: Mascagni Marianna, Ruggiero Alessia, Vincenzi Francesca
 ## Main aim
 <!-- what is the aim of the software, what it does, in very general terms -->
 ## The gff3 file
-The data on which the software works is stored in a GFF3 file, which stands for Generic Feature Format Version 3, called 'Homo_sapiens.GRCh38.85.gff3'. This file contains the annotation of the sequences.
+The data on which the software works is stored in a GFF3 file, which stands for Generic Feature Format Version 3, called 'Homo_sapiens.GRCh38.85.gff3'. This file contains the annotation of the sequences.<br>
 The file can be downloaded here : [link to file in Google Drive](https://drive.google.com/file/d/1AAke_vEC7LK0uasCoXE3Ge-KHeSYOWwK/view?usp=share_link)
 
 GFF3 files are nine-column, tab-delimited, plain text files; they're actually conceived as tabular data. In the head of the file is usually present many metadata lines which start with:
@@ -13,26 +13,23 @@ GFF3 files are nine-column, tab-delimited, plain text files; they're actually co
 - \# (for human readable comments)
 
 All these metadata have to be ignored and removed from the file for its analysis.
-*In the next section it will be described how and where.*
-
+*In the next section it will be described how and where.* <br>
 Also, for each line, the empty columns are denoted with a '.' .
 
 The nine columns, also called fields, are the following: seqid, source, type, start, end, score, strand, phase, attribute (which contains a list of seven features in the form tag=value separated by semicolumns).
 
 ## Data access
 In order to work and deal with the annotation data, the GFF3 file is transformed into a DataFrame object of Pandas (a Python library for dealing with tabular data).
-For the realization of this purpose, the class **ReaderGff3** behaves as a dataset reader which takes the dataset in GFF3 format and creates a correspondant Pandas DataFrame. This one is actually returned by the ReaderGff3 function as an instance of the class DatasetGff3.
-The ReaderGff3 class is a subclass of the abstract class *Reader*, which is a general abstract interface.
+For the realization of this purpose, it's implemented a dataset reader specific for the GFF3 format, that's based on a general abstract interface.<br>
+The dataset reader returns a dataset which is then modified in order to make it properly structured for the obtaining of the insights over data.
 
-The ReaderGff3 class takes as input the Pandas DataFrame corresponding to the original GFF3 file and returns an instance of the DatasetGff3 class. The class **DatasetGff3** is a subclass of the **DataSet** class: the first one is peculiar for the GFF3 case; whereas the second one is a class defining a generic tabular data. The DatasetGff3 class also takes as input a Pandas DataFrame (that derives from the GFF3 file) and modifies it to make it properly structured for the obtaining of the insights over data.
-
-The modifications we have applied to the DataFrame are:
+The modifications applied to the dataset are:
 - removal of all the metadata
 - replacement of the missing values (labeled with '.') with NaN values
 
-The Pandas DataFrame resulting from DatasetGff3 becomes an instance of its superclass DataSet.
-Then the DataSet object corresponding to the cleaned GFF3 file can be used to get the insights from the annotation file.
+The resulting dataset becomes an instance of *???*, which will be then used to get the insights over the data contained.
 
+A more detailed description of the software implementation can be visionated in the project specification.
 
 ## Dataset operations
 The software allows to get a number of insights over the annotation data. These are:
@@ -47,11 +44,12 @@ The software allows to get a number of insights over the annotation data. These 
 9. Count entries from 'havana', 'ensembl', 'ensembl_havana' : count the number of entries for each type of operation for the dataset containing containing only entries from source 'ensembl', 'havana' and 'ensembl_havana'
 10. Genes names : return the gene names from the dataset containing containing only entries from source 'ensembl', 'havana' and 'ensembl_havana'
 
-These insights, also referred to as 'operations', are contained in a registry of active operations.
+These insights, also referred to as 'operations', are contained in a registry of operations. Among those, the ones labeled as *active* can be executed over the dataset.
 
 ## User interface
-The software can be accessed by users through a web page, supported on Flask.
-The homepage presents briefly the software and from there the registry of active operations and the project document can be accessed.
-The registry of active operations opens in another page view where all the possible operations are listed and by selecting one of them another page view is opened where the result is displayed.
-  For some of the operations ("List seqIDs", "Information about entire chromosomes", "Display entries from 'havana', 'ensembl', 'ensembl_havana'", "Genes names") the resulting dataset displayed is a preview of the complete one containing only the first 10 and last 10 rows; the real one can be accessed from the same page view.
+The software can be accessed by users through a web page, supported on Flask. <br>
+The homepage presents briefly the software and from there the registry of active operations and the project document can be accessed. <br>
+The registry of operations opens in another page view where all the possible operations are listed and by selecting one of them another page view is opened where the result is displayed. <br>
+&emsp;For some of the operations (number 2, 6, 8, 10) the resulting dataset displayed is a preview of the complete one containing only the first <br>
+&emsp;and last 10 rows; the complete one can be accessed from the same page view. <br>
 The project specification page view displays the description of the project in terms of software analysis, design and implementation, including CRC cards and UML class diagrams and their description.
