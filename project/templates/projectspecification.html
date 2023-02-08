@@ -19,7 +19,7 @@
 	The class DataSetGff3 is a subclass of DataSet which stores the Pandas DataFrame retrieved from the Gff3 file, inheriting the method from DataSet, and relying on pandas.DataFrame as well; in addition to the DataSet class, the DataSetGff3 class removes the rows in the 'seqid' column that contain '#' values, resets the indexes of the DataFrame and replaces '.' with 'Nan'. All these additional functions depend on pandas.DataFrame. <br>
 	The DataSetGff3 class returns a DataFrame as a DataSet object, this responsibility therefore has as collaborators both pandas.DataFrame and DataSet. <br>
 	The Operation class has 10 methods called columnInfo, listSeqIds, listTypes, countFeaturesInSource, countEntriesForType, infoEntireChroms, fractionUnassembled, newHavana, countEntriesNewHavana and geneName that return respectively a DataSet object with the names and types of data of the columns of the DataFrame, a DataSet object containing the unique seqIDs of the DataFrame, a DataSet object containing the unique types in the DataFrame, a DataSet object containing the number of features for each source in the DataFrame, a DataSet object containing the number of entries for each type in the DataFrame, a DataSet object containing the entries of the DataFrame that have 'GRCh38' as source, a DataSet object containing the fraction of unassembled chromosomes in the DataFrame, a DataSet object with the entries that have as source 'ensembl', 'havana', or 'ensembl_havana', a DataSet object with the number of entries for each type in the newHavana DataSet, a DataSet object containing the gene names from the newHavana DataSet. All these methods have as collaborator the class DataSet and pandas.DataFrame<br> <br>
-    <img src="advanced_project.jpg" style="display: block; margin: 0 auto;">
+    <img src="/static/images/advanced_project.jpg" style="display: block; margin: 0 auto;">
     </p>
 
    
@@ -28,7 +28,7 @@
 	Between DataSet and DataSetGff3 there is a generalization, since DataSetGff3 inherits from DataSet.<br>
 	Linking the Operation class and the DataSet class there is a dependency, since all methods in the Operation class return a DataSet object. <br>
 	Pandas.DataFrame class is connected to the DataSet class though a unidirectional association, since the DataSet class is aware of the DataFrame but not viceversa. <br>
-	<img src="UML_AdvProgr_project.jpg" style="display: block; margin: 0 auto;">
+	<img src="/static/image/UML_AdvProgr_project.jpg" style="display: block; margin: 0 auto;">
     </p>
     
     <h2> Software implementation </h2>
