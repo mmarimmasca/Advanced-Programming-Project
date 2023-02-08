@@ -5,7 +5,8 @@ import pandas as pd
 
 class DataSet:
     def __init__(self, df: pd.core.frame.DataFrame):
-        ''' The DataSet object is initialized .....  '''
+        ''' The method constructor defines the initialization of a DataSet object.
+            It takes as input a parameter, 'df', which should be of type 'pd.core.fram.DataFrame', then a Pandas DataFrame '''
         self.dataFrame = df
 
     def getDataFrame(self):
