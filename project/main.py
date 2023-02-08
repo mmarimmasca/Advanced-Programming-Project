@@ -6,7 +6,7 @@ import operations
 from operations import *
 from flask import Flask, render_template
 
-app = Flask(__name__) # creating a Flask application named '???' associated with the variable 'app'
+app = Flask(__name__) # creating a Flask application associated with the variable 'app'
 
 # Reading and cleaning of the 'Homo_sapiens.GRCh38.85.gff3' file and creation of the corresponding DataSet object
 dataframe_gff3 = (ReaderGff3.read('Homo_sapiens.GRCh38.85.gff3')).getDataFrame() # reading the GFF3 file with ReaderGff3, then cleaning the resulting pd.DataFrame by using the class DataSetGff3 and finally returning it as pd.DataFrame
@@ -25,7 +25,7 @@ for e in method_list:      # for each of the methods' names :
         d[e] = 'active'            # ... the string 'active' becomes the value associated with that key
 
 
-# Flask : for each view function it's returned a template of HTML
+# Flask : for each view function, it's returned a HTML code 
 # Homepage
 @app.route('/')
 def homepage():
