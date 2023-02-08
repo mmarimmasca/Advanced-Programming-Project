@@ -19,7 +19,7 @@ method_list = [method for method in dir(Operation) if method.startswith('__') is
 
 for e in method_list:      # for each of the methods' names :
     func = getattr(cls, e) # assigning to the variable the method of the class 'Operation' with the current name ('e')
-    if type(func(dataset)) == str: # depending on the action of the decorator, so whether the functionis executed or a string i returned, either 'acive' or 'inactive' will be assigned to each method's name
+    if type(func(dataset)) == str: # depending on the action of the decorator, so whether the functions executed or a string i returned, either 'acive' or 'inactive' will be assigned to each method's name
         d[e] = 'inactive'         
     else:                          
         d[e] = 'active'            
