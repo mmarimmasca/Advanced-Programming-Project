@@ -20,14 +20,14 @@ The nine columns, also called fields, are the following: seqid, source, type, st
 
 ## Data access
 In order to work and deal with the annotation data, the GFF3 file is transformed into a DataFrame object of Pandas (a Python library for dealing with tabular data).
-For the realization of this purpose, it's implemented a dataset reader specific for the GFF3 format, that's based on a general abstract interface.<br>
-The dataset reader returns a dataset which is then modified in order to make it properly structured for the obtaining of the insights over data.
+For the realization of this purpose, it's implemented a dataset reader specific for the GFF3 format (a class called ReaderGFF3), that's based on a general abstract interface.<br>
+The dataset reader returns a dataset object specific for the GFF3 format (an instance of the class DataSetGFF3), which is then modified in order to make it properly structured for the obtaining of the insights over data.
 
 The modifications applied to the dataset are:
 - removal of all the metadata
 - replacement of the missing values (labeled with '.') with NaN values
 
-The resulting dataset becomes an instance of *???*, which will be then used to get the insights over the data contained.
+The resulting object becomes an instance of its parent class DataSet, which will be then used to get the insights over the data contained.
 
 A more detailed description of the software implementation can be visionated in the project specification.
 
@@ -50,6 +50,5 @@ These insights, also referred to as 'operations', are contained in a registry of
 The software can be accessed by users through a web page, supported on Flask. <br>
 The homepage presents briefly the software and from there the registry of active operations and the project document can be accessed. <br>
 The registry of operations opens in another page view where all the possible operations are listed and by selecting one of them another page view is opened where the result is displayed. <br>
-&emsp;For some of the operations (number 2, 6, 8, 10) the resulting dataset displayed is a preview of the complete one containing only the first <br>
-&emsp;and last 10 rows; the complete one can be accessed from the same page view. <br>
+For some of the operations (number 2, 6, 8, 10) the resulting dataset displayed is a preview of the complete one containing only the first and last 10 rows; the complete one can be accessed from the same page view. <br>
 The project specification page view displays the description of the project in terms of software analysis, design and implementation, including CRC cards and UML class diagrams and their description.
