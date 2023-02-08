@@ -35,7 +35,9 @@
     <p> In order to work and deal with the annotation data, the GFF3 file is transformed into a Pandas DataFrame through the class ReaderGff3,
 	which is the dataset reader that takes the dataset in GFF3 format and creates a correspondent Pandas DataFrame as an instance of the class DataSetGff3.
 	The ReaderGff3 is a subclass of the abstract class Reader, which is a general abstract interface.
-	Both the ReaderGff3 and the Reader classes are decorated with '@staticmethod' so that an instance of these classes don't have to be created in order to use the classes and their methods.<br>	    
+	These two classes have a single method called 'read' : therefore the 'read' method of the ReaderGff3 class overrides the 'read' method of the Reader class.
+	The Reader.read() is just a general abstract method; the ReaderGff3.read() is a method for reading in particular a GFF3 file.<br>
+	The 'read' methods of both classes are decorated with '@staticmethod' so that an instance of these classes don't have to be created in order to use the classes and their methods.<br>	    
 	<br>
 	The class DataSetGff3, which is a subclass of the DataSet class and is peculiar for the GFF3 case, takes as input a Pandas DataFrame (that derives from the GFF3 file) and modifies it to make it properly structured for the obtaining of the insights over data.<br>
 	Through the method ".getDataFrame()", the Pandas DataFrame resulting from DataSetGff3 becomes an instance of the class DataSet.<br>
@@ -46,6 +48,7 @@
 	<br>
 	In order to perform the operation on a DataSet object, it has to be part of the registry of active operations (which is implemented as a list called 'global_l').<br>
 	A decorator called '@isactive' marks an operation as active or not by checking if it's part of the registry of active operations: if it's part of it, the output is the execution of the method; otherwise it's a string displaying an error message.<br>
+	All the methods of the class Operation are decorated with '@isactive'.<br>
 	In the current version of the software, all the operations listed in the previous paragraph are part of the registry of active operations, therefore they're active.<br>
 	<br>
 	<br>
