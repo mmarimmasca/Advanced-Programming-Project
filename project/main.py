@@ -13,16 +13,16 @@ dataframe_gff3 = (ReaderGff3.read('Homo_sapiens.GRCh38.85.gff3')).getDataFrame()
 dataset = DataSet(dataframe_gff3) # casting the pd.DataFrame (of the GFF3 file) to a DataSet instance for performing the operations
 
 # Section of code for marking as active/inactive the operations 
-d = {} # creating an empty dictionary that will contain items of the type  name of the method : 'active'/'inactive'
+d = {} # creating an empty dictionary that will contain items of the type "name of the method : 'active'/'inactive'"
 cls = getattr(operations, 'Operation') # assigning the class 'Operation' to a variable
 method_list = [method for method in dir(Operation) if method.startswith('__') is False] # getting the list of the names of the methods of the class 'Operation'
 
 for e in method_list:      # for each of the methods' names :
     func = getattr(cls, e) # assigning to the variable the method of the class 'Operation' with the current name ('e')
-    if type(func(dataset)) == str: # if the returned value of the current method is a string ...
-        d[e] = 'inactive'          # ... the string 'inactive' becomes the value associated with the key of 'd' corresponding to the current method's name
-    else:                          # otherwise ...
-        d[e] = 'active'            # ... the string 'active' becomes the value associated with that key
+    if type(func(dataset)) == str: # depending on the action of the decorator, so whether the functionis executed or a string i returned, either 'acive' or 'inactive' will be assigned to each method's name
+        d[e] = 'inactive'         
+    else:                          
+        d[e] = 'active'            
 
 
 # Flask : for each view function, it's returned a HTML code 
