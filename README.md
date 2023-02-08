@@ -20,7 +20,7 @@ The nine columns, also called fields, are the following: seqid, source, type, st
 
 ## Data access
 In order to work and deal with the annotation data, the GFF3 file is transformed into a DataFrame object of Pandas (a Python library for dealing with tabular data).
-For the realization of this purpose, it's implemented a dataset reader specific for the GFF3 format (a class called ReaderGFF3), that's based on a general abstract interface.<br>
+For the realization of this purpose, a dataset reader specific for the GFF3 format (a class called ReaderGFF3) is implemented, based on a general abstract interface.<br>
 The dataset reader returns a dataset object specific for the GFF3 format (an instance of the class DataSetGFF3), which is then modified in order to make it properly structured for the obtaining of the insights over data.
 
 The modifications applied to the dataset are:
