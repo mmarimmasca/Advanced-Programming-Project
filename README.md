@@ -1,6 +1,6 @@
 # Insights on the human genome
 Collaborators: Mascagni Marianna, Ruggiero Alessia, Vincenzi Francesca <br>
-Advanced Programming porject, Genomics 2022/2023
+Advanced Programming project, Genomics 2022/2023
 ## Main aim
 The software allows to adress some questions on the human genome by performing a series of operations on a GFF3 file, which is a genome annotation file.
 ## The gff3 file
