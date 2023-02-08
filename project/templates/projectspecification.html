@@ -13,10 +13,10 @@
     <body style= 'margin: 25px 50px 75px 50px'>
 	<h1> Project specification </h1>
     <h2> Class Responsibility Collaboration Cards </h2>
-    <p>The class Reader is an abstract class, therefore it inherits from abc.ABCMeta, which is the metaclass for abc.ABC class, its only responsibility is to read data from any type of file.<br>
-	The class ReaderGff3 is a subclass of the class Reader and it reads data only from a GFF3 type of file, though the pandas read_table method and returns a DataSetGff3 file, therefore it relies not only on pandas but also on the DataSetGff3 class.<br>
-	The DataSet class stores the GFF3 file as a pandas DataFrame and returns the DataFrame as a DataSet object, both responsibilities have as collaborators pandas.DataFrame. <br>
-	The class DataSetGff3 is a subclass of DataSet which stores the GFF3 file as a pandas DataFrame, inheriting the method from DataSet, and relying on pandas.DataFrame as well; in addition to the DataSet class, the DataSetGff3 class removes the rows in the 'seqid' column that contain '#' values, resets the indexes of the DataFrame and replaces '.' with 'Nan'. All these additional functions depend on pandas.DataFrame. <br>
+    <p>The class Reader is an abstract class, therefore it inherits its characteristics from the ABC class; it does not have any responsibility, a part from giving a template for the implementation of subclasses.<br>
+	The class ReaderGff3 is a subclass of the class Reader and it reads data only from a GFF3 type of file, through the Pandas read_table() method, and returns a DataSetGff3 object, therefore it relies both on Pandas and the DataSetGff3 class.<br>
+	The DataSet class can store any Pandas DataFrame as an attribute of an instance of the class, which can be retrieved through a specific method; both responsibilities have as collaborator pandas.DataFrame. <br>
+	The class DataSetGff3 is a subclass of DataSet which stores the Pandas DataFrame retrieved from the Gff3 file, inheriting the method from DataSet, and relying on pandas.DataFrame as well; in addition to the DataSet class, the DataSetGff3 class removes the rows in the 'seqid' column that contain '#' values, resets the indexes of the DataFrame and replaces '.' with 'Nan'. All these additional functions depend on pandas.DataFrame. <br>
 	The DataSetGff3 class returns a DataFrame as a DataSet object, this responsibility therefore has as collaborators both pandas.DataFrame and DataSet. <br>
 	The Operation class has 10 methods called columnInfo, listSeqIds, listTypes, countFeaturesInSource, countEntriesForType, infoEntireChroms, fractionUnassembled, newHavana, countEntriesNewHavana and geneName that return respectively a DataSet object with the names and types of data of the columns of the DataFrame, a DataSet object containing the unique seqIDs of the DataFrame, a DataSet object containing the unique types in the DataFrame, a DataSet object containing the number of features for each source in the DataFrame, a DataSet object containing the number of entries for each type in the DataFrame, a DataSet object containing the entries of the DataFrame that have 'GRCh38' as source, a DataSet object containing the fraction of unassembled chromosomes in the DataFrame, a DataSet object with the entries that have as source 'ensembl', 'havana', or 'ensembl_havana', a DataSet object with the number of entries for each type in the new_havana DataSet, a DataSet object containing the gene names from the new_havana DataSet. All these methods have as collaborator the class DataSet and pandas.DataFrame<br> <br>
     <img src="advanced_project.jpg" style="display: block; margin: 0 auto;">
@@ -27,41 +27,41 @@
     <p>The class ReaderGff3 realizes the abstract interface provided by the Reader class, therefore the relation between the two classes is a realization. On the other hand there is a client-supplier relationship between the Reader_gff3 class and the DataSetGff3 class respectively, since the ReaderGff3 has to return a DataSetGff3 object, therefore the two have a dependency relationship.<br>
 	Between DataSet and DataSetGff3 there is a generalization, since DataSetGff3 inherits from DataSet.<br>
 	Linking the Operation class and the DataSet class there is a dependency, since all methods in the Operation class return a DataSet object. <br>
-	Pandas.DataFrame class is connected to the DataSet class though a unidirectional association. <br>
+	Pandas.DataFrame class is connected to the DataSet class though a unidirectional association, since the DataSet class is aware of the DataFrame but not viceversa. <br>
 	<img src="UML_AdvProgr_project.jpg" style="display: block; margin: 0 auto;">
     </p>
     
     <h2> Software implementation </h2>
     <p> In order to work and deal with the annotation data, the GFF3 file is transformed into a Pandas DataFrame through the class ReaderGff3,
-	which is the dataset reader that takes the dataset in GFF3 format and creates a correspondent Pandas DataFrame as an instance of the class DataSetGff3.
+	which takes the tabular data in GFF3 format and creates the correspondent Pandas DataFrame, used as attribute of an instance of the class DataSetGff3.
 	The ReaderGff3 is a subclass of the abstract class Reader, which is a general abstract interface.
-	These two classes have a single method called 'read' : therefore the 'read' method of the ReaderGff3 class overrides the 'read' method of the Reader class.
-	The Reader.read() is just a general abstract method; the ReaderGff3.read() is a method for reading in particular a GFF3 file.<br>
-	The 'read' methods of both classes are decorated with '@staticmethod' so that an instance of these classes don't have to be created in order to use the classes and their methods.<br>	    
+	These two classes have a single method called 'read' which is therefore overriden in the ReaderGff3 class.
+	The Reader.read() is just a general abstract method; the ReaderGff3.read() is specific for the GFF3 files.<br>
+	The 'read' methods of both classes are decorated with '@staticmethod' so that there is no need to create an instance of the class in order to use the class methods.<br>	    
 	<br>
-	The class DataSetGff3, which is a subclass of the DataSet class and is peculiar for the GFF3 case, takes as input a Pandas DataFrame (that derives from the GFF3 file) and modifies it to make it properly structured for the obtaining of the insights over data.<br>
-	Through the method ".getDataFrame()", the Pandas DataFrame resulting from DataSetGff3 becomes an instance of the class DataSet.<br>
-	Then the DataSet object, corresponding to the cleaned GFF3 file, is used as template for performing the operations.<br>
+	The class DataSetGff3, which is a subclass of the DataSet class and is peculiar for the implementation of data from GFF3 files, takes as input a Pandas DataFrame (that derives from the GFF3 file) and modifies it to make it properly structured for the operations to be carried out.<br>
+	Through the method ".getDataFrame()", the Pandas DataFrame of the DataSetGff3 object can be retrieved.<br>
+	In order for the operations to be performed, the DataFrame obtained becomes an attribute of an instance of the DataSet class.<br>
 	<br>
 	Each operation is implemented as a method of the class Operation. These methods take as input a DataSet object and return another DataSet object that contains the output of the respective operation.
 	Each of the methods is decorated with '@staticmethod'. <br>
 	<br>
-	In order to perform the operation on a DataSet object, it has to be part of the registry of active operations (which is implemented as a list called 'global_l').<br>
-	A decorator called '@isactive' marks an operation as active or not by checking if it's part of the registry of active operations: if it's part of it, the output is the execution of the method; otherwise it's a string displaying an error message.<br>
+	In order for the operation to be performed on a DataSet object, it has belong to the registry of active operations (which is implemented as a list called 'global_l').<br>
+	The decorator '@isactive' is able to activate an operation by checking if it's part of the registry of active operations: if it is, the output is the execution of the method itself; otherwise, it's a string displaying an error message.<br>
 	All the methods of the class Operation are decorated with '@isactive'.<br>
 	In the current version of the software, all the operations listed in the previous paragraph are part of the registry of active operations, therefore they're active.<br>
 	<br>
 	<br>
 	The user interface consists in a web site where the homepage provides access to the registry of operations and the project specification.<br>
-	The registry of operations is opened in another page view where the user can select the operation to run and the output is displayed in another page view.<br>
+	The page with the registry of operations allows the user to select the operation to be ran and the output is displayed in another page view.<br>
 	Each operation is labeled either with 'active' or 'inactive' depending on the '@isactive' decorator.<br>
 	&emsp;&emsp;To do so, the class Operation is assigned to a variable and a list containing the names of the methods in the class Operation is created.<br>
-	&emsp;&emsp;Then, a dictionary is created where the keys are the elements of the methods list and the values either 'active' or 'inactive' strings, depending on the output of the decorator applied on the method.<br>
-	To each operation can correspond either one of two outputs: a page view displaying the table with the results if the operation is active, or a page view displaying the error message "Function not in the registry of active operations" if the operation is inactive. 
-	Some tables, which would be very long, only display the first and last 10 rows of the dataset; the complete table can be accessed in another page view from a link below the table.<br>
+	&emsp;&emsp;Then, a dictionary is created where the keys correspond to the names of the methods list and the values either to 'active' or 'inactive' strings, depending on the output of the decorator applied on the method.<br>
+	Each operation has either one of two outputs: if the operation is active, a page view displaying the table with the results; otherwise, a page view displaying the error message "Function not in the registry of active operations". 
+	Of some tables, which would be very long, only the first and last 10 rows of the dataset are displayed; the complete table can be accessed in another page view from a link below the table.<br>
 	The project specification is opened in another page view as well.<br>
 	<br>
-	The web page is implemented with Flask. In Flask each route is implemented by a function that returns an HTML.<br>
+	The web page is implemented using Flask, where each route is implemented by a function that returns an HTML template to be displayed by the browser.<br>
 	To each operation corresponds a different route and in the case of operations requiring both the preview table and the complete one, two different routes are implemented.
 	
     </p>
