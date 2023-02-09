@@ -5,7 +5,7 @@ Advanced Programming project, Genomics 2022/2023
 The software allows to adress some questions on the human genome by performing a series of operations on a GFF3 file, which is a genome annotation file.
 ## The gff3 file
 The data on which the software works is stored in a GFF3 file, which stands for Generic Feature Format Version 3, called 'Homo_sapiens.GRCh38.85.gff3'. This file contains the annotation of the sequences.<br>
-The file can be downloaded here : [link to file in Google Drive](https://drive.google.com/file/d/1AAke_vEC7LK0uasCoXE3Ge-KHeSYOWwK/view?usp=share_link)
+The file can be downloaded here : [link to file in Google Drive](https://drive.google.com/file/d/1AAke_vEC7LK0uasCoXE3Ge-KHeSYOWwK/view?usp=share_link); before running the software, it has to be placed in the folder 'project', together with the Python files, in order for the code to access the data.
 
 GFF3 files are nine-column, tab-delimited, plain text files; they're actually conceived as tabular data. In the head of the file there usually are many metadata lines which start with:
 - \## (meaning it's stable metadata)
