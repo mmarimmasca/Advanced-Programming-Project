@@ -42,8 +42,8 @@ The software allows to get some insights over the annotation data by performing 
 6. Information about entire chromosomes : derive a new dataset containing only the information about entire chromosomes
 7. Calculate the fraction of unassembled sequences : calculate the fraction of unassembled sequences from source GRCh38
 8. Display entries from 'havana', 'ensembl', 'ensembl_havana' : obtain a new dataset containing only entries from source 'ensembl', 'havana' and 'ensembl_havana'
-9. Count entries from 'havana', 'ensembl', 'ensembl_havana' : count the number of entries for each type of operation for the dataset containing containing only entries from source 'ensembl', 'havana' and 'ensembl_havana'
-10. Genes names : return the gene names from the dataset containing containing only entries from source 'ensembl', 'havana' and 'ensembl_havana'
+9. Count entries from 'havana', 'ensembl', 'ensembl_havana' : count the number of entries for each type of operation for the dataset containing only entries from source 'ensembl', 'havana' and 'ensembl_havana'
+10. Genes names : return the gene names from the dataset containing only entries from source 'ensembl', 'havana' and 'ensembl_havana'
 
 These operations are contained in a registry of operations. Among those, the ones labeled as *active* can be executed over the dataset.
 
